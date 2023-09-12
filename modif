@@ -1,0 +1,13 @@
+provider "aws" {
+}
+
+resource "aws_instance" "two" {
+for_each = toset(["web-server", "app-server", "db-server"])
+ami = "ami-0911e88fb4687e06b"
+instance_type = "t2.micro"
+key_name =pem
+availability_zone = "us-east-2"
+tags = {
+Name = "${each.value}"
+}
+}
