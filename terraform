@@ -1,0 +1,26 @@
+AWS- s3- -------------terraform 23 backeng setup:
+
+
+
+provider "aws" {
+  region = "us-east-2"
+}
+
+terraform {
+  backend "s3" {
+    bucket = "terrabucket01"
+    key    = "aaira"
+    region = "us-east-2"
+  }
+}
+
+resource "aws_instance" "one" {
+ami = "ami-0911e88fb4687e06b"
+instance_type = "t2.micro"
+key_name = "pem"
+availability_zone = "us-east-2a"
+tags = {
+Name = "useast"
+}
+}
+
